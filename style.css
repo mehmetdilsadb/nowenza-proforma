@@ -120,9 +120,11 @@ input,textarea{
 .product-input.center{text-align:center}
 .product-input.right{text-align:right}
 .remove{
-  display:flex;align-items:center;justify-content:center;position:absolute;right:2px;top:2px;
-  width:18px;height:18px;padding:0;font-size:12px;line-height:1;border-radius:50%;
-  background:#fff;border:1px solid #c8b9a8;color:#8A6A4A;cursor:pointer;z-index:2
+  display:flex;align-items:center;justify-content:center;
+  position:absolute;right:3px;top:3px;z-index:2;
+  width:18px;height:18px;padding:0;font-size:12px;line-height:1;
+  border-radius:50%;background:#fff;border:1px solid #c9b9aa;
+  color:#8b5f45;cursor:pointer
 }
 .row-wrap{position:relative}
 
@@ -154,40 +156,52 @@ input,textarea{
 }
 .line{width:60%;margin:12mm auto 0;border-bottom:1px solid #777}
 
-@media(max-width:900px){
-  .page{transform-origin:top left;margin:10px;width:210mm}
+/* Screen/mobile: the invoice itself remains a fixed A4 canvas.
+   Only the surrounding viewport/toolbar adapts; this keeps PDF/print geometry unchanged. */
+html,body{min-width:0}
+body{overflow-x:auto}
+
+@media screen and (max-width:900px){
+  .toolbar{
+    position:sticky;top:0;
+    flex-wrap:wrap;gap:8px;
+    padding:10px 12px;
+  }
+  .toolbar-actions{flex-wrap:wrap}
+  .page{
+    width:210mm;
+    min-width:210mm;
+    margin:10px auto;
+    transform:none;
+  }
 }
 
-input[type="number"]:not(.qty)::-webkit-outer-spin-button,
-input[type="number"]:not(.qty)::-webkit-inner-spin-button{
-  -webkit-appearance:none;margin:0
-}
-input[type="number"]:not(.qty){-moz-appearance:textfield}
-
-@media(max-width:600px){
-  body{overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom)}
-  .toolbar{position:sticky;top:0;z-index:20;padding:10px 12px;gap:8px;flex-wrap:wrap}
-  .toolbar-actions{display:flex;gap:6px;width:100%}
-  .toolbar-actions button{flex:1;min-height:42px}
-  .page{width:100%;min-height:auto;margin:0;padding:14px;border-radius:0;box-shadow:none}
-  .header{grid-template-columns:1fr;gap:12px}
-  .brand{height:30mm;justify-content:center}
-  .logo{width:58mm;height:30mm;object-fit:contain}
-  .invoice-head h1{text-align:center;font-size:23pt}
-  .meta-grid{grid-template-columns:1fr 1fr}
-  .two-col,.bottom-grid{grid-template-columns:1fr}
-  .bank-grid{grid-template-columns:1fr 1fr}
-  .products-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .table-head,.product-row{min-width:760px}
-  .product-image{width:24mm}
-  .signatures{grid-template-columns:1fr}
-  .signature-box{height:24mm}
+@media screen and (max-width:600px){
+  .page{margin:8px 8px 20px}
+  .toolbar{font-size:12px}
+  .toolbar-actions button{padding:8px 10px}
 }
 
 @media print{
   @page{size:A4 portrait;margin:0}
+  html,body{width:210mm;min-width:210mm;overflow:visible}
   body{background:#fff}
   .no-print{display:none!important}
-  .page{margin:0;width:210mm;min-height:297mm;box-shadow:none}
+  .page{
+    margin:0;
+    width:210mm;
+    min-width:210mm;
+    min-height:297mm;
+    box-shadow:none;
+    transform:none;
+  }
   input,textarea{color:#000}
 }
+
+/* Quantity keeps its native +/- spinner; percentage inputs stay visually clean. */
+input[type="number"]:not(.qty)::-webkit-outer-spin-button,
+input[type="number"]:not(.qty)::-webkit-inner-spin-button{
+  -webkit-appearance:none;
+  margin:0;
+}
+input[type="number"]:not(.qty){-moz-appearance:textfield;}
