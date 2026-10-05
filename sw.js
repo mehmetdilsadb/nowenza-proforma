@@ -1,6 +1,6 @@
-const CACHE = 'nowenza-proforma-v1';
+const CACHE = 'nowenza-proforma-v2';
 const ASSETS = [
-  './', './index.html', './style.css', './script.js', './manifest.json', './logo.png'
+  './', './index.html', './style.css', './script.js', './manifest.json', './logo.png', './icon-180.png', './icon-192.png', './icon-512.png'
 ];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));

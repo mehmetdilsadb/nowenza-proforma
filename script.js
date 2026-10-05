@@ -70,7 +70,6 @@ function calculate(){
   const deposit=grand*depositRate/100;
   const balance=grand-deposit;
   document.getElementById("subtotal").textContent=money(subtotal);
-  document.getElementById("vat").textContent=money(vat);
   document.getElementById("grandTotal").textContent=money(grand);
   document.getElementById("deposit").textContent=money(deposit);
   document.getElementById("balance").textContent=money(balance);
