@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#8A6A4A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="NOWENZA">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="manifest" href="manifest.json">
+  <title>NOWENZA Proforma Fatura</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="toolbar no-print">
+    <div>
+      <strong>NOWENZA Proforma</strong>
+      <span>— verileri doldur, PDF al</span>
+    </div>
+    <div class="toolbar-actions">
+      <button onclick="addProduct()">+ Ürün Ekle</button>
+      <button class="primary" onclick="window.print()">PDF / Yazdır</button>
+    </div>
+  </div>
+
+  <main class="page">
+    <header class="header">
+      <div class="brand">
+        <img src="images/logo.png" alt="NOWENZA Logo" class="logo">
+      </div>
+      <div class="invoice-head">
+        <h1>PROFORMA FATURA</h1>
+        <div class="meta-grid">
+          <label>TARİH<input id="date" type="date"></label>
+          <label>TESLİM<input id="delivery" type="date"></label>
+        </div>
+      </div>
+    </header>
+
+    <section class="two-col">
+      <div class="card">
+        <div class="section-title">SATICI BİLGİLERİ</div>
+        <div class="info-grid">
+          <label>FİRMA<input id="sellerCompany" value="NOWENZA Mobilyaları Üretim İth. İhr. Tic. Ltd. Şti."></label>
+          <label>ADRES<input id="sellerAddress" value="Güzelburç Mah. 2302. Cad. No:55 Antakya/Hatay"></label>
+          <label>DEPO<input id="sellerDepot" value="Huzur Mah. 52. Sok. Ada İş Merkezi No:38 İnegöl/Bursa"></label>
+          <label>WHATSAPP<input id="sellerWhatsapp" value="536 745 05 68"></label>
+          <label>TELEFON<input id="sellerPhone"></label>
+          <label>E-MAİL<input id="sellerEmail"></label>
+          <label>WEB<input id="sellerWeb"></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">ALICI BİLGİLERİ</div>
+        <div class="info-grid">
+          <label>FİRMA<input id="buyerCompany" value="SÖĞÜT MOBİLYA"></label>
+          <label>ADRES<input id="buyerAddress" value="HADIMKÖY 75. YIL CAD. NO:10A 34555 ARNAVUTKÖY / İSTANBUL"></label>
+          <label>İLGİLİ KİŞİ<input id="buyerContact" value="RAMAZAN SÖĞÜT"></label>
+          <label>TELEFON<input id="buyerPhone"></label>
+          <label>E-MAİL<input id="buyerEmail"></label>
+          <label>VERGİ DAİRESİ<input id="taxOffice"></label>
+          <label>VERGİ NO<input id="taxNo"></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="card bank-card">
+      <div class="section-title">BANKA BİLGİLERİ</div>
+      <div class="bank-grid">
+        <label>BANKA<input id="bank"></label>
+        <label>HESAP<input id="account"></label>
+        <label>IBAN<input id="iban"></label>
+        <label>AÇIKLAMA / İSİM<input id="bankName"></label>
+        <label>NAKLİYE<input id="shipping"></label>
+      </div>
+    </section>
+
+    <section class="products-wrap">
+      <div class="table-head">
+        <div>#</div><div>GÖRSEL</div><div>ÜRÜN İSMİ</div>
+        <div>DETAYLAR</div><div>ADET</div><div>BİRİM FİYAT</div><div>TOPLAM</div>
+      </div>
+      <div id="products"></div>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="note card">
+        <div class="note-title">NOT</div>
+        <textarea id="note">Sipariş geçildiğinde %30 ön ödeme alınır.
+Ürün hazırlığı bittiğinde tarafınıza haber verilir.
+Kalan ödeme tahsil edildikten sonra sevkiyatı yapılır.</textarea>
+      </div>
+      <div class="totals card">
+        <div class="total-row"><span>TOPLAM</span><strong id="subtotal">0,00 TL</strong></div>
+        <div class="total-row grand"><span>GENEL TOPLAM</span><strong id="grandTotal">0,00 TL</strong></div>
+        <div class="total-row"><span>ÖN ÖDEME (%) <input id="depositRate" class="small-input" type="number" value="30"></span><strong id="deposit">0,00 TL</strong></div>
+        <div class="total-row"><span>KALAN BAKİYE</span><strong id="balance">0,00 TL</strong></div>
+      </div>
+    </section>
+
+    <section class="signatures">
+      <div class="signature-box"><strong>KAŞE VE İMZA</strong><div class="line"></div></div>
+      <div class="signature-box"><strong>MÜŞTERİ ONAYI</strong><div class="line"></div></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js"));}</script>
+</body>
+</html>
