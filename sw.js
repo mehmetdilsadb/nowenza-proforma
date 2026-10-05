@@ -1,4 +1,4 @@
-const CACHE = 'nowenza-proforma-v3';
+const CACHE = 'nowenza-proforma-v4';
 const ASSETS = [
   './', './index.html', './style.css', './script.js', './manifest.json', './logo.png', './icon-180.png', './icon-192.png', './icon-512.png'
 ];
